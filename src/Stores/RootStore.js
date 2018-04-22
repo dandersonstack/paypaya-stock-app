@@ -16,7 +16,18 @@ export default class RootStore {
     }
 
     @computed get filteredSuggestions() {
-        return []
+        let count = 0;
+        return this.currentSuggestions.filter(suggestion => {
+          const keep =
+            (!this.currentText || suggestion.name.toLowerCase().indexOf(this.currentText.toLowerCase()) !== -1) &&
+            count < 5;
+
+          if (keep) {
+            count += 1;
+          }
+
+          return keep;
+        });
     }
 
     @action
@@ -29,7 +40,6 @@ export default class RootStore {
            }
         } catch(error) {
             console.log('there was an error: ', error);
-            this.currentSuggestions = [];
         }
 
     }

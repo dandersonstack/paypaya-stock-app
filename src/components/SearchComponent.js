@@ -35,9 +35,9 @@ const searchRootStyles = theme => ({
 @withStyles(searchRootStyles) @inject('RootStore')
 export default class IntegrationDownshift extends Component {
 
-  getSuggestions(inputValue) {
+  getSuggestions(inputValue='') {
     let count = 0;
-    return this.props.RootStore.currentSuggestions.filter(suggestion => {
+    return this.props.RootStore.filteredSuggestions.filter(suggestion => {
       const keep =
         (!inputValue || suggestion.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) &&
         count < 5;
@@ -54,16 +54,17 @@ export default class IntegrationDownshift extends Component {
       const {classes, RootStore} = this.props;
       return (
           <div className={classes.root}>
-            <Downshift>
+            <Downshift
+                onInputValueChange = {(inputValue) => {RootStore.updateCurrentText(inputValue) }}
+            >
                 {({getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex}) => (
 
                     <div className={classes.container}>
                         {renderInput({
                             fullWidth: true,
                             classes,
+
                             InputProps: getInputProps({
-                                onChange: (event)=>{
-                                  RootStore.updateCurrentText(event.target.value)},
                                 placeholder: 'Search a for a stock by full name',
                                 id: 'integration-downshift-simple',
                             }),
