@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
 import SearchComponent from './SearchComponent.js'
 import {withStyles} from 'material-ui/styles';
+import SearchAndFilterTable from './SearchAndFilterTable'
 
 const styles = theme => ({
   searchContainer: {
-      width:  '600px',
-      height: '100px'
+
   },
   progress: {
     position: 'absolute',
@@ -16,6 +16,7 @@ const styles = theme => ({
     transform: 'translate(0, 50%)'
   },
   titleContainer: {
+    flexDirection: 'column-reverse',
     flexGrow: 0.2,
     fontSize: "44",
     flexBasis: 0,
@@ -30,6 +31,7 @@ export default class App extends Component {
 
     componentWillMount() {
         //TODO: load your the current users stalks
+        this.props.RootStore.initalize();
     }
 
     //this is global catch to catch an error anywhere in the app
@@ -40,14 +42,18 @@ export default class App extends Component {
     }
 
     render() {
-        const {classes} = this.props;
+        const {classes, RootStore} = this.props;
         return (
             <div>
                 <div className={classes.titleContainer}>
-                    Papaya Stock App
+                    {RootStore.username? `Welcome ${RootStore.username} to your `: ''}Papaya Stock App
+                </div>
+                <div className={classes.titleContainer}>
+                    {RootStore.funds? 'Available Funds: ' + RootStore.funds: ''}
                 </div>
                 <div className={classes.searchContainer}>
                     <SearchComponent />
+                    <SearchAndFilterTable/>
                 </div>
             </div>
 
