@@ -57,8 +57,7 @@ export default class SimpleTable extends Component {
                                         />
                                       </TableCell>
                                     <TableCell numeric>
-                                        <Button value={n.symbol}
-                                                onClick={(event)=>{RootStore.buyStock(event.target.value)}}
+                                        <Button onClick={(event)=>{console.log('I was clicked and shoudl call the buy stock method')}}
                                                 disabled={!n.can_buy}
                                                 variant="raised"
                                                 color="primary"
