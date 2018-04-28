@@ -2,8 +2,10 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider  } from 'mobx-react';
 import stores from './Stores';
-import App from './components/App'
+import App from './components/CalculatorWidgetApp'
 import {createMuiTheme, MuiThemeProvider} from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles';
+
 
 const theme = createMuiTheme({
   palette: {

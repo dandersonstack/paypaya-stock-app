@@ -4,7 +4,8 @@
   "description": "Boilerplate for MobX + React project with JSX, ES6 and decorator compilation",
   "scripts": {
     "start": "webpack-dev-server --hot --open",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -37,9 +38,8 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
-    "downshift": "^1.31.11",
+    "jest": "^22.4.3",
     "keycode": "^2.2.0",
     "material-ui": "^1.0.0-beta.33",
     "mobx": "^3.0.0",
